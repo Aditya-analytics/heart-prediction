@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 import cloudpickle
 # Load model
-model_pipeline = joblib.load(r"ML_Projects\heart_disease_pred\heart-prediction\model_pipe.pkl")
+model_pipeline = joblib.load(r"ML_Projects\heart_disease_pred\heart-prediction\model_pipeline (1).pkl")
 
 
 
