@@ -1,10 +1,17 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
 
 # Load saved pipeline (includes preprocessing + model)
-model_pipeline = joblib.load(r'ML_Projects\heart_disease_pred\heart-prediction\model_pipe.pkl')
+# Folder where app.py is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# Model path inside the same folder
+model_path = os.path.join(BASE_DIR, "model_pipe.pkl")
+
+# Load model pipeline
+model_pipeline = joblib.load(model_path)
 
 
 # Title
