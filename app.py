@@ -3,8 +3,7 @@ import pandas as pd
 import joblib
 
 # Load saved pipeline (includes preprocessing + model)
-model_pipeline = joblib.load(r"C:\Users\suyas\python.py\ML_Projects\heart_disease_pred\model_pipeline.pkl")
-
+model_pipeline = joblib.load(r"C:\Users\suyas\python.py\ML_Projects\heart_disease_pred\heart-prediction\model_pipeline.pkl")
 st.title("❤️ Heart Disease Risk Prediction")
 
 st.subheader("Provide the following details:")
