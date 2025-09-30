@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # Load saved pipeline (includes preprocessing + model)
-model_pipeline = joblib.load(r'C:\Users\suyas\python.py\ML_Projects\heart_disease_pred\heart-prediction\app.py')
+model_pipeline = joblib.load(r'ML_Projects\heart_disease_pred\heart-prediction\model_pipe.pkl')
 
 
 
@@ -31,10 +31,7 @@ with right:
     chest_pain = st.selectbox("Chest Pain Type", ["TA", "ATA", "NAP", "ASY"])
     resting_ecg = st.selectbox("Resting ECG", ["Normal", "ST", "LVH"])
 
-# Convert inputs
-fasting_bs = 1 if "Yes" in fasting_bs else 0
-exercise_angina = 1 if exercise_angina == "Yes" else 0
-sex = 1 if sex == "Male" else 0   # example: 1=Male, 0=Female
+
 
 # Center the Predict button
 l, m, r = st.columns([1, 2, 1])
@@ -44,18 +41,20 @@ with m:
 # Prediction logic
 if predict_btn:
     input_data = pd.DataFrame([{
-        "Age": age,
-        "RestingBP": resting_bp,
-        "Cholesterol": cholesterol,
-        "FastingBS": fasting_bs,
-        "MaxHR": max_hr,
-        "Oldpeak": oldpeak,
-        "Sex": sex,
-        "ChestPainType": chest_pain,
-        "RestingECG": resting_ecg,
-        "ExerciseAngina": exercise_angina,
-        "ST_Slope": st_slope
-    }])
+    "Age": age,
+    "RestingBP": resting_bp,
+    "Cholesterol": cholesterol,
+    "FastingBS": fasting_bs,
+    "MaxHR": max_hr,
+    "Oldpeak": oldpeak,
+    "Sex": sex,
+    "ChestPainType": chest_pain,
+    "RestingECG": resting_ecg,
+    "ExerciseAngina": exercise_angina,
+    "ST_Slope": st_slope
+}])
+
+
 
     # Predict using pipeline
     prediction = model_pipeline.predict(input_data)[0]
