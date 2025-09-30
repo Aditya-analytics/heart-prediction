@@ -3,8 +3,8 @@ import pandas as pd
 import joblib
 import cloudpickle
 # Load model
-with open("ML_Projects\heart_disease_pred\heart-prediction\model_cloud.pkl", "rb") as f:
-    model_pipeline = cloudpickle.load(f)
+model_pipeline = joblib.load(r"ML_Projects\heart_disease_pred\heart-prediction\model_pipe.pkl")
+
 
 
 # Title
