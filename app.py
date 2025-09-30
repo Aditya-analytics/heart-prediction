@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # Load saved pipeline (includes preprocessing + model)
-model_pipe = joblib.load(r"C:\Users\suyas\python.py\ML_Projects\heart_disease_pred\model_pipe.pkl")
+model_pipeline = joblib.load(r"C:\Users\suyas\python.py\ML_Projects\heart_disease_pred\model_pipeline.pkl")
 
 st.title("❤️ Heart Disease Risk Prediction")
 
@@ -24,11 +24,8 @@ resting_ecg = st.selectbox("Resting ECG", ["Normal", "ST", "LVH"])
 exercise_angina = st.selectbox("Exercise Angina", ["Yes", "No"])
 st_slope = st.selectbox("ST Slope", ["Flat", "Up", "Down"])
 
-left, middle, right = st.columns([1,6,1])
-with middle:
 # Prediction button
- m = st.button("Predict",use_container_width=True)
- if m:
+if st.button("Predict"):
     # Create input DataFrame (raw features)
     input_data = pd.DataFrame([{
         "Age": age,
@@ -43,11 +40,10 @@ with middle:
         "ExerciseAngina": exercise_angina,
         "ST_Slope": st_slope
     }])
-    
 
     # Predict using pipeline (handles encoding + scaling)
-    prediction = model_pipe.predict(input_data)[0]
-    prob = model_pipe.predict_proba(input_data)[0][1]  # probability of heart disease
+    prediction = model_pipeline.predict(input_data)[0]
+    prob = model_pipeline.predict_proba(input_data)[0][1]  # probability of heart disease
 
     # Show result
     if prediction == 1:
